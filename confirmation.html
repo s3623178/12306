@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation - 12306 Train Booking</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="bg-dark text-white py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="12306 Logo" class="img-fluid" style="width: 150px;">
+            </div>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a href="index.html" class="nav-link text-white">Home</a></li>
+                    <li class="nav-item"><a href="search.html" class="nav-link text-white">Search</a></li>
+                    <li class="nav-item"><a href="booking.html" class="nav-link text-white">Booking</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link text-white">Contact</a></li>
+                    <li class="nav-item"><a href="login.html" id="loginLink" class="nav-link text-white">Login</a></li>
+                    <li class="nav-item"><a href="register.html" id="registerLink" class="nav-link text-white">Register</a></li>
+                    <li class="nav-item"><a href="user_profile.html" id="profileLink" class="nav-link text-white d-none">Profile</a></li>
+                    <li class="nav-item"><a href="orders.html" id="ordersLink" class="nav-link text-white d-none">Orders</a></li>
+                    <li class="nav-item"><a href="#" id="logoutLink" class="nav-link text-white d-none">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container py-5" style="background: url('assets/images/confirmation.jpg') no-repeat center center/cover; min-height: 100vh;">
+        <section class="confirmation bg-light p-5 rounded shadow" style="background: rgba(255, 255, 255, 0.8);">
+            <h1 class="mb-4 text-center">Booking Confirmation</h1>
+            <p class="text-center">Thank you for booking with 12306. Your booking details are as follows:</p>
+            <div id="confirmationDetails" class="bg-white p-3 rounded shadow-sm">
+                <!-- Booking details will be displayed here -->
+            </div>
+            <a href="index.html" class="btn btn-primary mt-3 d-block mx-auto" style="width: 200px;">Back to Home</a>
+        </section>
+    </main>
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 12306. All rights reserved.</p>
+    </footer>
+    <div id="loading" class="loading-overlay d-none">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const confirmationDetails = localStorage.getItem('confirmationDetails');
+            if (confirmationDetails) {
+                document.getElementById('confirmationDetails').innerHTML = confirmationDetails;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - 12306 Train Booking</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="bg-dark text-white py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="12306 Logo" class="img-fluid" style="width: 150px;">
+            </div>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a href="index.html" class="nav-link text-white">Home</a></li>
+                    <li class="nav-item"><a href="search.html" class="nav-link text-white">Search</a></li>
+                    <li class="nav-item"><a href="booking.html" class="nav-link text-white">Booking</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link text-white">Contact</a></li>
+                    <li class="nav-item"><a href="login.html" id="loginLink" class="nav-link text-white">Login</a></li>
+                    <li class="nav-item"><a href="register.html" id="registerLink" class="nav-link text-white">Register</a></li>
+                    <li class="nav-item"><a href="user_profile.html" id="profileLink" class="nav-link text-white d-none">Profile</a></li>
+                    <li class="nav-item"><a href="orders.html" id="ordersLink" class="nav-link text-white d-none">Orders</a></li>
+                    <li class="nav-item"><a href="#" id="logoutLink" class="nav-link text-white d-none">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container py-5" style="background: url('assets/images/payment.jpg') no-repeat center center/cover; min-height: 100vh;">
+        <section class="payment-form bg-light p-5 rounded shadow" style="background: rgba(255, 255, 255, 0.8);">
+            <h1 class="mb-4 text-center">Payment</h1>
+            <form id="paymentForm">
+                <div class="form-group">
+                    <label for="cardNumber">Card Number:</label>
+                    <input type="text" id="cardNumber" name="cardNumber" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="cardName">Card Holder Name:</label>
+                    <input type="text" id="cardName" name="cardName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="expiryDate">Expiry Date:</label>
+                    <input type="text" id="expiryDate" name="expiryDate" class="form-control" placeholder="MM/YY" required>
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" name="cvv" class="form-control" required>
+                </div>
+                <div id="paymentMessage" class="alert alert-danger d-none" role="alert"></div>
+                <button type="submit" class="btn btn-primary mt-3">Pay</button>
+            </form>
+        </section>
+    </main>
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 12306. All rights reserved.</p>
+    </footer>
+    <div id="loading" class="loading-overlay d-none">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const paymentForm = document.getElementById('paymentForm');
+            paymentForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                showLoading();
+                const cardNumber = document.getElementById('cardNumber').value;
+                const cardName = document.getElementById('cardName').value;
+                const expiryDate = document.getElementById('expiryDate').value;
+                const cvv = document.getElementById('cvv').value;
+                const paymentMessage = document.getElementById('paymentMessage');
+                
+                // Basic form validation
+                if (!cardNumber || !cardName || !expiryDate || !cvv) {
+                    hideLoading();
+                    showMessage(paymentMessage, 'Please fill out all fields.', 'danger');
+                    return;
+                }
+                
+                // Simulate payment processing
+                setTimeout(() => {
+                    hideLoading();
+                    // Retrieve booking details from localStorage
+                    const bookingDetails = JSON.parse(localStorage.getItem('bookingDetails'));
+                    
+                    // Store confirmation details in localStorage
+                    const confirmationDetails = `
+                        <p><strong>Name:</strong> ${bookingDetails.name}</p>
+                        <p><strong>Age:</strong> ${bookingDetails.age}</p>
+                        <p><strong>Gender:</strong> ${bookingDetails.gender}</p>
+                        <p><strong>Train:</strong> ${bookingDetails.train}</p>
+                        <p><strong>Seat Preference:</strong> ${bookingDetails.seat}</p>
+                        <p><strong>Status:</strong> Confirmed</p>
+                    `;
+                    localStorage.setItem('confirmationDetails', confirmationDetails);
+                    
+                    // Store order details in localStorage
+                    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+                    const orderId = 'ORD' + Math.floor(Math.random() * 1000000);
+                    const orderDetails = {
+                        orderId,
+                        ...bookingDetails,
+                        price: bookingDetails.price || '$50',
+                        status: 'Confirmed',
+                        departure: '08:00',
+                        arrival: '12:00'
+                    };
+                    orders.push(orderDetails);
+                    localStorage.setItem('orders', JSON.stringify(orders));
+                    
+                    // Redirect to confirmation page
+                    window.location.href = 'confirmation.html';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Trains - 12306 Train Booking</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/search.css">
+</head>
+<body>
+    <header class="bg-dark text-white py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="12306 Logo" class="img-fluid" style="width: 150px;">
+            </div>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a href="index.html" class="nav-link text-white">Home</a></li>
+                    <li class="nav-item"><a href="search.html" class="nav-link text-white">Search</a></li>
+                    <li class="nav-item"><a href="booking.html" class="nav-link text-white">Booking</a></li>
+                    <li class="nav-item"><a href="refund.html" class="nav-link text-white">Refund</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link text-white">About Us</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link text-white">Contact</a></li>
+                    <li class="nav-item"><a href="login.html" class="nav-link text-white">Login</a></li>
+                    <li class="nav-item"><a href="register.html" class="nav-link text-white">Register</a></li>
+                    <li class="nav-item"><a href="user_profile.html" class="nav-link text-white d-none" id="profileLink">Profile</a></li>
+                    <li class="nav-item"><a href="orders.html" class="nav-link text-white d-none" id="ordersLink">Orders</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-white d-none" id="logoutLink">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container py-5" style="background: url('assets/images/city_background.jpg') no-repeat center center/cover; min-height: 100vh;">
+        <section class="search-form bg-light p-5 rounded shadow" style="background: rgba(255, 255, 255, 0.8);">
+            <h1 class="mb-4 text-center">Search for Trains</h1>
+            <form id="searchForm">
+                <div class="form-group">
+                    <label for="from">From:</label>
+                    <input list="cities" id="from" name="from" class="form-control" required>
+                    <datalist id="cities">
+                        <option value="Beijing">
+                        <option value="Shanghai">
+                        <option value="Guangzhou">
+                        <option value="Shenzhen">
+                    </datalist>
+                </div>
+                <div class="form-group">
+                    <label for="to">To:</label>
+                    <input list="cities" id="to" name="to" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Search</button>
+            </form>
+        </section>
+        <section class="search-results mt-5" id="searchResults">
+            <!-- Results will be displayed here -->
+        </section>
+    </main>
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 12306. All rights reserved.</p>
+    </footer>
+    <div id="loading" class="loading-overlay d-none">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html>

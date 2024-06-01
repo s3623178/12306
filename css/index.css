@@ -1,0 +1,95 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    background: #343a40;
+}
+
+header .logo img {
+    width: 150px;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+header nav ul li {
+    margin: 0;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+}
+
+header nav ul li a:hover {
+    background: #495057;
+    border-radius: 5px;
+}
+
+.hero-section {
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+    color: #fff;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-size: 4em;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+}
+
+.services-section {
+    background-color: #f8f9fa;
+}
+
+.services-section .col-md-4 img {
+    max-width: 100%;
+    height: auto;
+}
+
+.services-section h4 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.services-section p {
+    color: #6c757d;
+}
+
+.about-section {
+    background-color: #fff;
+}
+
+.about-section .col-md-6 img {
+    max-width: 100%;
+    height: auto;
+}
+
+.contact-section {
+    background-color: #f8f9fa;
+}
+
+.contact-section .col-md-6 img {
+    max-width: 100%;
+    height: auto;
+}
+
+footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px 0;
+    margin-top: 40px;
+}
